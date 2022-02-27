@@ -7,8 +7,7 @@ import org.spekframework.spek2.style.specification.describe
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-
-object StringToDateConvertorSpek: Spek({
+object StringToDateConvertorSpek : Spek({
     describe("StringToDateConvertor") {
         context("when string 20/10/2018 12:47:55 calls toDateFormat") {
             val resultDate = "20/10/2018 12:47:55".toDateFormat()
@@ -25,5 +24,4 @@ object StringToDateConvertorSpek: Spek({
             }
         }
     }
-
 })

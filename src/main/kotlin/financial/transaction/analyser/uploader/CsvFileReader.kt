@@ -16,16 +16,16 @@ class CsvFileReader(
             csvReader {
                 skipMissMatchedRow = true
             }.readAll(fileName).drop(1).map {
-                    Transaction(
-                        transactionId=it[0].trim(),
-                        fromAccountId=it[1].trim(),
-                        toAccountId=it[2].trim(),
-                        createdAt= it[3].trim().toDateFormat()!!,
-                        amount= BigDecimal(it[4].trim()),
-                        transactionType=TransactionType.valueOf(it[5].trim()),
-                        relatedTransaction= it[6].trim().checkIfEmptyAndTransactionType(it[5].trim())
-                    )
-                }.toList()
+                Transaction(
+                    transactionId = it[0].trim(),
+                    fromAccountId = it[1].trim(),
+                    toAccountId = it[2].trim(),
+                    createdAt = it[3].trim().toDateFormat()!!,
+                    amount = BigDecimal(it[4].trim()),
+                    transactionType = TransactionType.valueOf(it[5].trim()),
+                    relatedTransaction = it[6].trim().checkIfEmptyAndTransactionType(it[5].trim())
+                )
+            }.toList()
         } catch (e: CSVFieldNumDifferentException) {
             throw InvalidDateFormat("Invalid data format.")
         } catch (e: IllegalArgumentException) {
@@ -34,16 +34,17 @@ class CsvFileReader(
             throw InvalidDateFormat("Invalid Date")
         }
     }
-
 }
 
 private fun String.checkIfEmptyAndTransactionType(transactionType: String): String? {
     return when {
         (this == "" && TransactionType.valueOf(transactionType) == TransactionType.PAYMENT) -> null
         (this == "" && TransactionType.valueOf(transactionType) == TransactionType.REVERSAL) -> throw InvalidDateFormat(
-            "Invalid data transactionType REVERSAL should have relatedTransaction data")
+            "Invalid data transactionType REVERSAL should have relatedTransaction data"
+        )
         TransactionType.valueOf(transactionType) == TransactionType.PAYMENT -> throw InvalidDateFormat(
-            "Invalid data transactionType PAYMENT should not have relatedTransaction data")
+            "Invalid data transactionType PAYMENT should not have relatedTransaction data"
+        )
         else -> this
     }
 }

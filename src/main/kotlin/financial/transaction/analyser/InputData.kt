@@ -6,4 +6,4 @@ data class InputData(
     val accountId: String,
     val fromDateFormat: Date,
     val toDateFormat: Date
-    )
+)

@@ -13,9 +13,10 @@ import financial.transaction.analyser.uploader.CsvFileReader
 import financial.transaction.analyser.utility.toDateFormat
 import java.math.BigDecimal
 
-private val DATE_REGEX = """
+private val DATE_REGEX =
+    """
     (\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})
-""".trimIndent().toRegex()
+    """.trimIndent().toRegex()
 
 private val CSV_REGEX = "([a-zA-Z0-9/\\s_\\\\.\\-\\(\\):])+(.csv)\$".toRegex()
 
@@ -23,12 +24,14 @@ class CommandLineInterface : CliktCommand() {
 
     private val file by argument(
         help =
-        "(MANDATORY) Enter *.csv file with complete location."
+            "(MANDATORY) Enter *.csv file with complete location."
     )
         .file(mustExist = true).validate { require(CSV_REGEX.matches(it.toString())) { "File must be CSV file" } }
 
-    private val accountId: String by option(help = "Enter the account id.").prompt("Given the above input CSV file," +
-            " entering the following input arguments:\naccountId")
+    private val accountId: String by option(help = "Enter the account id.").prompt(
+        "Given the above input CSV file," +
+            " entering the following input arguments:\naccountId"
+    )
     private val from: String by option(help = "Enter the start date.").prompt("from").validate {
         require(it.matches(DATE_REGEX)) {
             "Date format is incorrect we are expecting it to be dd/mm/yyyy hh:mm:ss"
@@ -56,19 +59,17 @@ class CommandLineInterface : CliktCommand() {
         val transactions = CsvFileReader(file).readCSVFile()
         val (relativeBalance, numberOfTransaction) = AnalyseTransaction(transactions)
             .getRelativeBalanceAndNumberOfTransaction(
-            inputData
+                inputData
+            )
+        echo(
+            "Relative balance for the period is: " +
+                "${appendDollarSymbol(relativeBalance)} Number of transactions included is: $numberOfTransaction"
         )
-        echo("Relative balance for the period is: " +
-                "${appendDollarSymbol(relativeBalance)} Number of transactions included is: $numberOfTransaction")
     }
-
 }
 
 private fun appendDollarSymbol(relativeBalance: BigDecimal): String {
-    return if(relativeBalance< BigDecimal(0)) "-$${relativeBalance.abs()}" else "+$${relativeBalance.abs()}"
+    return if (relativeBalance < BigDecimal(0)) "-$${relativeBalance.abs()}" else "+$${relativeBalance.abs()}"
 }
 
 class InvalidDateFormat(override val message: String) : RuntimeException(message)
-
-
-

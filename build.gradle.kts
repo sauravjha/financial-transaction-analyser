@@ -9,10 +9,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.6.0"
+    id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
     // Apply the application plugin to add support for building a CLI application.
     application
 }
-
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -40,7 +40,6 @@ dependencies {
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:0.10.4")
     implementation("com.vhl.blackmo:kotlin-grass-jvm:0.3.0")
 
-
     implementation("io.github.microutils:kotlin-logging-jvm:2.0.2")
     implementation("org.slf4j:slf4j-simple:1.7.29")
 
@@ -59,7 +58,7 @@ dependencies {
 
     testImplementation("io.mockk:mockk:1.10.2")
 
-    testImplementation( "org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 tasks {

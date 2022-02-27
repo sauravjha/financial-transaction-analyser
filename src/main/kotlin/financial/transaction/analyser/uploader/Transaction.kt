@@ -3,7 +3,6 @@ package financial.transaction.analyser.uploader
 import java.math.BigDecimal
 import java.util.Date
 
-
 data class Transaction(
     val transactionId: String,
     val fromAccountId: String,
