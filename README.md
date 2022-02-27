@@ -1,6 +1,39 @@
 # financial-transaction-analyser
 This application analyses the financial transaction.
 
+## How to run this application
+```
+Usage: command-line-interface [OPTIONS] FILE
+
+Options:
+  --account-id TEXT  Enter the account id.
+  --from TEXT        Enter the start date.
+  --to TEXT          Enter the end date.
+  -h, --help         Show this message and exit
+
+Arguments:
+  FILE  (MANDATORY) Enter *.csv file with complete location.
+```
+## Example
+```
+./runFTA example-sample.csv (I have added this file in the repo just for testing)
+```
+
+## How to run Test
+```
+./gradlew test 
+```
+
+## Code Quality Check task/script
+:star2: Kotlin
+```$xslt
+Check the lint
+./gradlew ktlintCheck
+Fix the lint
+./gradlew ktlintFormat
+```
+:sparkles: Linting is taken care. :smiley:
+
 # TheProblem
 ## The goal of the challenge is to implement a system that analyses financial transaction records.
 ```
@@ -48,14 +81,9 @@ For the sake of simplicity, it is safe to assume that
 • Transaction are recorded in order
 ```
 
-# Solution
-
-
-
-## Libraries:
-```
-1. https://ajalt.github.io/clikt/ (This library is used for the command line interface)
-
-
-```
+## References/Libraries:
+1. [clikt - Used for Getting Comand Line Argument](https://ajalt.github.io/clikt/)
+2. [kotlin-csv - Used for reading the CSV file](https://github.com/doyaaaaaken/kotlin-csv)
+2. [Spek - Used for running the test](https://www.spekframework.org/migration/)
+3. [Ktlint - Used for Checking and fixing the Linting issue](https://github.com/pinterest/ktlint)
 
