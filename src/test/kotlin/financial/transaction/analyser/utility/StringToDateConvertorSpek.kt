@@ -12,7 +12,6 @@ object StringToDateConvertorSpek: Spek({
     describe("StringToDateConvertor") {
         context("when string 20/10/2018 12:47:55 calls toDateFormat") {
             val resultDate = "20/10/2018 12:47:55".toDateFormat()
-            //val date = Calendar.getInstance().time
             val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
             val resultedDate = dateFormat.format(resultDate)
             it("returns correct year") {

@@ -66,7 +66,7 @@ object AnalyseTransactionSpek: Spek({
                 "20/10/2018 19:00:00".toDateFormat()!!
             )
 
-            val relativeBalance = EvaluateTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
+            val relativeBalance = AnalyseTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
             it("returns correct relative balance") {
                 assertThat(relativeBalance.relativeBalance, equalTo(BigDecimal("0")))
             }
@@ -131,7 +131,7 @@ object AnalyseTransactionSpek: Spek({
                 "20/10/2018 19:00:00".toDateFormat()!!
             )
 
-            val relativeBalance = EvaluateTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
+            val relativeBalance = AnalyseTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
             it("returns correct relative balance") {
                 assertThat(relativeBalance.relativeBalance, equalTo(BigDecimal("-35.50")))
             }
@@ -196,7 +196,7 @@ object AnalyseTransactionSpek: Spek({
                 "20/10/2020 19:00:00".toDateFormat()!!
             )
 
-            val relativeBalance = EvaluateTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
+            val relativeBalance = AnalyseTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
             it("returns correct relative balance i.e 0") {
                 assertThat(relativeBalance.relativeBalance, equalTo(BigDecimal("0")))
             }
@@ -261,7 +261,7 @@ object AnalyseTransactionSpek: Spek({
                 "20/10/2018 19:00:00".toDateFormat()!!
             )
 
-            val relativeBalance = EvaluateTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
+            val relativeBalance = AnalyseTransaction(expectedOutput).getRelativeBalanceAndNumberOfTransaction(inputData)
             it("returns correct relative balance i.e 0") {
                 assertThat(relativeBalance.relativeBalance, equalTo(BigDecimal("-35.50")))
             }
